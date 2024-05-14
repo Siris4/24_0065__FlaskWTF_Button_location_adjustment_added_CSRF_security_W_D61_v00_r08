@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <title>Login</title>
+    <style>
+        .btn-primary, .btn-primary:hover, .btn-primary:focus {
+            background-color: #ff5f00;
+            border-color: #ff5f00;
+        }
+        .btn-primary:hover, .btn-primary:focus {
+            background-color: #ff4500;
+            border-color: #ff4500;
+        }
+        .btn-primary:active {
+            background-color: #ffcc00;
+            border-color: #ffcc00;
+            box-shadow: 0 0 10px 5px #ffcc00;
+        }
+    </style>
+</head>
+<body>
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Login</h1>
+            <form method="POST" action="{{ url_for('login') }}">
+                {{ form.csrf_token }}
+                <div>
+                    {{ form.email.label }} {{ form.email(size=30) }}
+                    {% if form.email.errors %}
+                        <ul class="errors">
+                            {% for error in form.email.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                <div>
+                    {{ form.password.label }} {{ form.password(size=30) }}
+                    {% if form.password.errors %}
+                        <ul class="errors">
+                            {% for error in form.password.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% endif %}
+                </div>
+                {{ form.submit(class="btn btn-primary btn-lg", style="margin-top: 0.5cm;") }}
+            </form>
+        </div>
+    </div>
+</body>
+</html>
